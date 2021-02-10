@@ -16,13 +16,13 @@ import com.castrocarazo.restaurante.domain.UserResponse;
 
 
 @RestController()
-@RequestMapping("/api/")
+@RequestMapping("/api/user")
 public class UserController {
 
 	@Autowired
 	IUserDao usuarios;
 	
-	@GetMapping("user")
+	@GetMapping()
 	public ResponseEntity<List<User>> getAll(){
 		try{
 			List<User> users = (List<User>) usuarios.findAll();
