@@ -7,8 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,11 +22,6 @@ public class Ingredientes implements Serializable {
 	@JoinColumn(name = "catalogo_id")
 	private CatalogoIngredientes detalleIngrediente;
 	
-	//@OneToMany
-	//@JoinColumn(name = "id")
-	private Platillo platillo;
-	
-
 	public Long getId() {
 		return id;
 	}

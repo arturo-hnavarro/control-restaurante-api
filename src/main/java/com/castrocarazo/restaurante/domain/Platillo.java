@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -38,18 +36,11 @@ public class Platillo implements Serializable {
 	@Column(name = "create_at")
 	private Date createAt;
 
-	/*@OneToMany(mappedBy="platillo", fetch = FetchType.LAZY)
-	//@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	@JoinColumn(name = "ingrediente_id")
-	private List<Ingredientes> ingredientes;*/
-	
 
-	// un usuario muchos roles @ManyToMany por debajo crea una tabla intermedia usuarios_roles
-	//FetchType.LAZY carga solo cuando se hace llamado al metodo getRoles. Esto evita que se sobre cargue la bd si la llamada no es necesaria
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="platillos_ingredientes", joinColumns =  @JoinColumn(name="platillo_id"),//foreing keys para las tablas 
 	inverseJoinColumns = @JoinColumn(name="ingrediente_id"),//foreing keys para las tablas
-	uniqueConstraints = {@UniqueConstraint(columnNames = {"platillo_id", "ingrediente_id"})})// configurar para que los usuarios no tengan roles repetidos 
+	uniqueConstraints = {@UniqueConstraint(columnNames = {"platillo_id", "ingrediente_id"})})// configurar para no repetir 
 	private List<CatalogoIngredientes> ingredientes;
 
 	@OneToOne
@@ -104,8 +95,6 @@ public class Platillo implements Serializable {
 		return estadoPlatillo;
 	}
 	
-	
-
 	public void setEstadoPlatillo(EstadoPlatillo estadoPlatillo) {
 		this.estadoPlatillo = estadoPlatillo;
 	}

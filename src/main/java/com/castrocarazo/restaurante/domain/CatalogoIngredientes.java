@@ -31,7 +31,7 @@ public class CatalogoIngredientes implements Serializable {
 		this.id = id;
 	}
 
-	public String getUsername() {
+	public String getNombre() {
 		return nombre;
 	}
 
