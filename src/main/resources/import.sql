@@ -37,6 +37,7 @@ INSERT INTO `tipo_platos` (nombre, descripcion) VALUES ('Pizzas','Deliciosos piz
 
 INSERT INTO `estados_platillos` (nombre, descripcion) VALUES ('habilitado','Disponible para venta.');
 INSERT INTO `estados_platillos` (nombre, descripcion) VALUES ('deshabilitado','Temporalmente fuera de venta.');
+INSERT INTO `estados_platillos` (nombre, descripcion) VALUES ('solicitada','Solicitada la orden por el cliente.');
 
 /* catalogo de platillos */
 INSERT INTO `platillos` (nombre, precio, create_at, estado_id, tipo_id) VALUES ('Farinata genovesa o fainá', 2500.00,  CURRENT_DATE(), 1,1); --1
@@ -65,3 +66,10 @@ INSERT INTO `platillos_ingredientes` (platillo_id, ingrediente_id) VALUES (4,9);
 INSERT INTO `platillos_ingredientes` (platillo_id, ingrediente_id) VALUES (4,8);
 INSERT INTO `platillos_ingredientes` (platillo_id, ingrediente_id) VALUES (5,9);
 INSERT INTO `platillos_ingredientes` (platillo_id, ingrediente_id) VALUES (5,8);
+
+
+/*Ordenes*/
+INSERT INTO `mesas` (detalle) VALUES ('Detalle de la mesa 1');
+INSERT INTO `mesas` (detalle) VALUES ('Detalle de la mesa 2 en la Terraza');
+INSERT INTO `mesas` (detalle) VALUES ('Detalle de la mesa 3 para dos personas');
+INSERT INTO `mesas` (detalle) VALUES ('Detalle de la mesa 4 barra');
