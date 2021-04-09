@@ -50,6 +50,8 @@ public class Platillo implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "tipo_id")
 	private TipoPlato tipoPlato;
+	
+	private String image;
 
 	public Long getId() {
 		return id;
@@ -106,7 +108,15 @@ public class Platillo implements Serializable {
 	public void setTipoPlato(TipoPlato tipoPlato) {
 		this.tipoPlato = tipoPlato;
 	}
+	
+	public String getImage() {
+		return image;
+	}
 
+	public void setImgage(String image) {
+		this.image = image;
+	}
+	
 	private static final long serialVersionUID = 7138317283952280030L;
 
 }
