@@ -24,7 +24,7 @@ INSERT INTO `catalogo_ingredientes` (nombre, cantidad_disponible) VALUES ('Orega
 INSERT INTO `catalogo_ingredientes` (nombre, cantidad_disponible) VALUES ('Queso', 200);--8
 INSERT INTO `catalogo_ingredientes` (nombre, cantidad_disponible) VALUES ('Jamón', 200);--9
 INSERT INTO `catalogo_ingredientes` (nombre, cantidad_disponible) VALUES ('Tomillo', 200);--10
-INSERT INTO `catalogo_ingredientes` (nombre, cantidad_disponible) VALUES ('Pepperoni', 200);-11
+INSERT INTO `catalogo_ingredientes` (nombre, cantidad_disponible) VALUES ('Pepperoni', 200);--11
 INSERT INTO `catalogo_ingredientes` (nombre, cantidad_disponible) VALUES ('Carne de res.', 1200);--12
 INSERT INTO `catalogo_ingredientes` (nombre, cantidad_disponible) VALUES ('Carne de cerdo.', 200);--13
 INSERT INTO `catalogo_ingredientes` (nombre, cantidad_disponible) VALUES ('Chile dulce.', 20);--14
