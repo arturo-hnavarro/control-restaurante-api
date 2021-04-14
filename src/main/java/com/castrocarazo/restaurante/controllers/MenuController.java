@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,6 +45,15 @@ public class MenuController {
 		}
 	}
 	
+	@PutMapping(consumes = "application/json")
+	public ResponseEntity<Platillo> editar(@RequestBody Platillo platillo){
+		try{
+			Platillo respuesta  = menu.save(platillo);
+			return new ResponseEntity<>(respuesta, HttpStatus.OK);
+		}catch(Exception ex) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	@GetMapping("/ver")
 	public ResponseEntity<Platillo> obtenerPorId(@RequestParam Long id){
 		try{
