@@ -47,7 +47,8 @@ public class OrdenDeComida implements Serializable {
 	/*@OneToMany(mappedBy = "ordenDeComida", fetch = FetchType.LAZY)
 	private List<Items> items;*/
 	
-	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.MERGE) //Registro primero la factura y luego los insert. Al eliminar primero las lineas y luego los items
+	//Una orden muchos items
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL) //Registro primero la orden y luego los insert. Al eliminar primero las lineas y luego los items
 	@JoinColumn(name="orden_id") //indico el FK. Crea un campo FK en la tabla facturas_items
 	private List<Items> items;
 
