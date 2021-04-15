@@ -41,7 +41,7 @@ INSERT INTO `estados_platillos` (nombre, descripcion) VALUES ('solicitada','Soli
 
 /* catalogo de platillos */
 INSERT INTO `platillos` (nombre, precio, create_at, estado_id, tipo_id, image) VALUES ('Farinata genovesa o fainá', 2500.00,  CURRENT_DATE(), 1,1, 'https://libroderecetas.com/files/recetas/farinata.jpg'); --1
-INSERT INTO `platillos` (nombre, precio, create_at, estado_id, tipo_id, image) VALUES ('SUPREMA (GRANDE)', 11950.00,  CURRENT_DATE(), 1,2, 'file:///D:/Documentos/GitHub/control-restaurante-api/src/main/resources/imagenes/Farinata.jpg');--2
+INSERT INTO `platillos` (nombre, precio, create_at, estado_id, tipo_id, image) VALUES ('SUPREMA (GRANDE)', 11950.00,  CURRENT_DATE(), 1,2, 'https://lh3.googleusercontent.com/proxy/jmb2laIqDudagRK-Xw2L2UXp5WeuAccddQ4CLRB2uzdpjyBtEAntpRewsT7oj_t1_2FsdzFBmMKZ5ijCjckXiTwerB-qEmQxihG4pau4rVC7-HSgCaYr1wT4ki7nzGuOnXM');--2
 INSERT INTO `platillos` (nombre, precio, create_at, estado_id, tipo_id, image) VALUES ('SUPREMA (MEDIANA)', 9950.00,  CURRENT_DATE(), 1,2, 'https://lh3.googleusercontent.com/proxy/jmb2laIqDudagRK-Xw2L2UXp5WeuAccddQ4CLRB2uzdpjyBtEAntpRewsT7oj_t1_2FsdzFBmMKZ5ijCjckXiTwerB-qEmQxihG4pau4rVC7-HSgCaYr1wT4ki7nzGuOnXM');--3
 INSERT INTO `platillos` (nombre, precio, create_at, estado_id, tipo_id, image) VALUES ('JAMÓN Y QUESO (GRANDE)', 11950.00,  CURRENT_DATE(), 1,2, 'https://www.laespanolaaceites.com/wp-content/uploads/2019/06/pizza-con-chorizo-jamon-y-queso-1080x671.jpg');--4
 INSERT INTO `platillos` (nombre, precio, create_at, estado_id, tipo_id, image) VALUES ('JAMÓN Y QUESO (MEDIANA)', 9950.00,  CURRENT_DATE(), 1,2, 'https://www.laespanolaaceites.com/wp-content/uploads/2019/06/pizza-con-chorizo-jamon-y-queso-1080x671.jpg');--5
