@@ -3,15 +3,18 @@ package com.castrocarazo.restaurante.domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "articulos_orden_comida")
+//@Table(name = "articulos_orden_comida")
+@Table(name = "orden_items")
 public class Items implements Serializable {
 	
 	@Id
@@ -21,8 +24,10 @@ public class Items implements Serializable {
 	private int cantidad;
 	private double precio;
 	
-	@OneToOne
-	@JoinColumn(name = "platillo_id")
+	/*@OneToOne
+	@JoinColumn(name = "platillo_id")*/
+	@ManyToOne(fetch= FetchType.LAZY)
+	@JoinColumn(name="platillo_id")
 	private Platillo platillo;
 	
 	public Long getId() {
