@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 @Entity
@@ -52,6 +53,17 @@ public class Platillo implements Serializable {
 	private TipoPlato tipoPlato;
 	
 	private String image;
+	
+	@Transient
+	private byte[] imageInBytes;
+
+	public byte[] getImageInBytes() {
+		return imageInBytes;
+	}
+
+	public void setImageInBytes(byte[] imageInBytes) {
+		this.imageInBytes = imageInBytes;
+	}
 
 	public Long getId() {
 		return id;

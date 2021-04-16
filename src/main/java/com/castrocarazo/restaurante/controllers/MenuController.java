@@ -1,7 +1,10 @@
 package com.castrocarazo.restaurante.controllers;
 
-import java.util.List;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,52 +19,66 @@ import org.springframework.web.bind.annotation.RestController;
 import com.castrocarazo.restaurante.dao.IMenuDao;
 import com.castrocarazo.restaurante.domain.Platillo;
 
-
 @RestController
 @RequestMapping("/api/menu")
 public class MenuController {
-	
+
 	@Autowired
 	IMenuDao menu;
-	
+
 	@GetMapping()
-	public ResponseEntity<List<Platillo>> getAll(){
-		try{
-			List<Platillo> platillos = (List<Platillo>) menu.findAll();
+	public ResponseEntity<List<Platillo>> getAll() {
+		try {
+			List<Platillo> platillos = asignarImgABytes((List<Platillo>) menu.findAll());
 			return new ResponseEntity<>(platillos, HttpStatus.OK);
-		}catch(Exception ex) {
+		} catch (Exception ex) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
+
 	}
-	
+
 	@PostMapping(consumes = "application/json")
-	public ResponseEntity<Platillo> guardar(@RequestBody Platillo platillo){
-		try{
-			Platillo respuesta  = menu.save(platillo);
+	public ResponseEntity<Platillo> guardar(@RequestBody Platillo platillo) {
+		try {
+			Platillo respuesta = menu.save(platillo);
 			return new ResponseEntity<>(respuesta, HttpStatus.OK);
-		}catch(Exception ex) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
-	
-	@PutMapping(consumes = "application/json")
-	public ResponseEntity<Platillo> editar(@RequestBody Platillo platillo){
-		try{
-			Platillo respuesta  = menu.save(platillo);
-			return new ResponseEntity<>(respuesta, HttpStatus.OK);
-		}catch(Exception ex) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
-	@GetMapping("/ver")
-	public ResponseEntity<Platillo> obtenerPorId(@RequestParam Long id){
-		try{
-			Platillo platillo  = menu.findById(id).orElse(null);
-			return new ResponseEntity<>(platillo, HttpStatus.OK);
-		}catch(Exception ex) {
+		} catch (Exception ex) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
+	@PutMapping(consumes = "application/json")
+	public ResponseEntity<Platillo> editar(@RequestBody Platillo platillo) {
+		try {
+			Platillo respuesta = menu.save(platillo);
+			return new ResponseEntity<>(respuesta, HttpStatus.OK);
+		} catch (Exception ex) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@GetMapping("/ver")
+	public ResponseEntity<Platillo> obtenerPorId(@RequestParam Long id) {
+		try {
+			Platillo platillo = menu.findById(id).orElse(null);
+			platillo.setImageInBytes(transformarImgABytes(platillo.getImage()));
+			return new ResponseEntity<>(platillo, HttpStatus.OK);
+		} catch (Exception ex) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	private List<Platillo> asignarImgABytes(List<Platillo> lista) throws IOException {
+		for (Platillo platillo : lista) {
+			platillo.setImageInBytes(transformarImgABytes(platillo.getImage()));
+		}
+		return lista;
+	}
+
+	private byte[] transformarImgABytes(String ubicacion) throws IOException {
+
+		File fi = new File(ubicacion);
+		byte[] fileContent = Files.readAllBytes(fi.toPath());
+		return fileContent;
+	}
 }
