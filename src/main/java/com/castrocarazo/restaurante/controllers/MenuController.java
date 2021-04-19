@@ -18,26 +18,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.castrocarazo.restaurante.dao.IMenuDao;
+import com.castrocarazo.restaurante.dao.MenuDaoService;
 import com.castrocarazo.restaurante.domain.Platillo;
 
 @RestController
 @RequestMapping("/api/menu")
 public class MenuController {
 
-	 private static Logger log = LoggerFactory.getLogger(MenuController.class);
-	
+	private static Logger log = LoggerFactory.getLogger(MenuController.class);
+
 	@Autowired
-	IMenuDao menu;
+	MenuDaoService menu;
 
 	@GetMapping()
 	public ResponseEntity<List<Platillo>> getAll() {
-		log.info("MenuController [getAll()] -> Intentando consultar la lista de platillos" );
+		log.info("MenuController [getAll()] -> Intentando consultar la lista de platillos");
 		try {
-			List<Platillo> platillos = asignarImgABytes((List<Platillo>) menu.findAll());
+			List<Platillo> platillos = menu.findAll();
 			return new ResponseEntity<>(platillos, HttpStatus.OK);
 		} catch (Exception ex) {
-			log.error("Error al consultar la lista de platillos. Exception" + ex.getMessage() );
+			log.error("Error al consultar la lista de platillos. Exception" + ex.getMessage());
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
@@ -66,29 +66,12 @@ public class MenuController {
 	@GetMapping("/ver")
 	public ResponseEntity<Platillo> obtenerPorId(@RequestParam Long id) {
 		try {
-			Platillo platillo = menu.findById(id).orElse(null);
-			platillo.setImageInBytes(transformarImgABytes(platillo.getImage()));
+			Platillo platillo = menu.findById(id);
 			return new ResponseEntity<>(platillo, HttpStatus.OK);
 		} catch (Exception ex) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
-	private List<Platillo> asignarImgABytes(List<Platillo> lista) {
-		try {
-			for (Platillo platillo : lista) {
-				platillo.setImageInBytes(transformarImgABytes(platillo.getImage()));
-			}
-		} catch (Exception ignore) {
-			log.error("Error al convertir imagen a bytes. Exception" + ignore.toString());
-		}
-		return lista;
-	}
-
-	private byte[] transformarImgABytes(String ubicacion) throws IOException {
-
-		File fi = new File(ubicacion);
-		byte[] fileContent = Files.readAllBytes(fi.toPath());
-		return fileContent;
-	}
+	
 }
