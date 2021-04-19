@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.castrocarazo.restaurante.dao.IOrdenDao;
+import com.castrocarazo.restaurante.domain.EstadoPlatillo;
 import com.castrocarazo.restaurante.domain.OrdenDeComida;
 
 @RestController
@@ -55,6 +56,8 @@ public class OrdenesController {
 	@PostMapping("/salvar")
 	public ResponseEntity<OrdenDeComida> salvar(@RequestBody OrdenDeComida orden) {
 		try {
+			if(orden.getId() == null)
+				orden.setEstadoPlatillo(new EstadoPlatillo(Long.valueOf(3), "solicitada","Solicitada la orden por el cliente."));
 			OrdenDeComida response = ordenesService.save(orden);
 			if (response != null) {
 				return new ResponseEntity<>(response, HttpStatus.CREATED);

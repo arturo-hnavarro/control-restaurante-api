@@ -13,12 +13,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "ordenes")
@@ -44,13 +47,17 @@ public class OrdenDeComida implements Serializable {
 	@JoinColumn(name = "estado_id")
 	private EstadoPlatillo estadoPlatillo;
 
-	/*@OneToMany(mappedBy = "ordenDeComida", fetch = FetchType.LAZY)
+
+	//Una orden muchos items
+	/*@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL) //Registro primero la orden y luego los insert. Al eliminar primero las lineas y luego los items
+	@JoinColumn(name="orden_id") //indico el FK. Crea un campo FK en la tabla facturas_items
 	private List<Items> items;*/
 	
-	//Una orden muchos items
-	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL) //Registro primero la orden y luego los insert. Al eliminar primero las lineas y luego los items
-	@JoinColumn(name="orden_id") //indico el FK. Crea un campo FK en la tabla facturas_items
-	private List<Items> items;
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinTable(name="platillos_orden", joinColumns =  @JoinColumn(name="orden_id"),///foreing keys para las tablas 
+	inverseJoinColumns = @JoinColumn(name="platillo_id"),//foreing keys para las tablas
+	uniqueConstraints = {@UniqueConstraint(columnNames = {"orden_id", "platillo_id"})})// configurar para no repetir 
+	private List<Platillo> platillos;
 
 
 	@PrePersist
@@ -59,7 +66,7 @@ public class OrdenDeComida implements Serializable {
 	}
 	
 	public OrdenDeComida() {
-		this.items = new ArrayList<>();
+		this.platillos = new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -110,12 +117,12 @@ public class OrdenDeComida implements Serializable {
 		this.estadoPlatillo = estadoPlatillo;
 	}
 
-	public List<Items> getItems() {
-		return items;
+	public List<Platillo> getPlatillos() {
+		return platillos;
 	}
 
-	public void setItems(List<Items> items) {
-		this.items = items;
+	public void setPlatillo(List<Platillo> platillos) {
+		this.platillos = platillos;
 	}
 
 	private static final long serialVersionUID = -3206903864858417920L;

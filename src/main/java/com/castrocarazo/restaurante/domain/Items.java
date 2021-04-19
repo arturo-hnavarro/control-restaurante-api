@@ -30,6 +30,8 @@ public class Items implements Serializable {
 	@JoinColumn(name="platillo_id")
 	private Platillo platillo;
 	
+	private Long orden;
+	
 	public Long getId() {
 		return id;
 	}
