@@ -20,6 +20,7 @@ import com.castrocarazo.restaurante.dao.IOrdenDao;
 import com.castrocarazo.restaurante.domain.EstadoPlatillo;
 import com.castrocarazo.restaurante.domain.OrdenDeComida;
 
+
 @RestController
 @RequestMapping("/api/ordenes")
 public class OrdenesController {
@@ -77,5 +78,4 @@ public class OrdenesController {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
 }

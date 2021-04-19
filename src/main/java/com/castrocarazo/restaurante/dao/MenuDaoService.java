@@ -29,7 +29,8 @@ public class MenuDaoService {
 
 	public Platillo findById(Long id) {
 		Platillo platillo = menu.findById(id).orElse(null);
-		platillo.setImageInBytes(transformarImgABytes(platillo.getImage()));
+		if(platillo != null)
+			platillo.setImageInBytes(transformarImgABytes(platillo.getImage()));
 		return platillo;
 	}
 

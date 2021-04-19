@@ -1,8 +1,6 @@
 package com.castrocarazo.restaurante.controllers;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
+
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -35,7 +33,10 @@ public class MenuController {
 		log.info("MenuController [getAll()] -> Intentando consultar la lista de platillos");
 		try {
 			List<Platillo> platillos = menu.findAll();
-			return new ResponseEntity<>(platillos, HttpStatus.OK);
+			if(platillos != null)
+				return new ResponseEntity<>(platillos, HttpStatus.OK);
+			else 
+				return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 		} catch (Exception ex) {
 			log.error("Error al consultar la lista de platillos. Exception" + ex.getMessage());
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -67,11 +68,13 @@ public class MenuController {
 	public ResponseEntity<Platillo> obtenerPorId(@RequestParam Long id) {
 		try {
 			Platillo platillo = menu.findById(id);
-			return new ResponseEntity<>(platillo, HttpStatus.OK);
+			if(platillo != null) 
+				return new ResponseEntity<>(platillo, HttpStatus.OK);
+			else
+				return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 		} catch (Exception ex) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
 	
 }
