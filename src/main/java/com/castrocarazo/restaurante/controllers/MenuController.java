@@ -1,10 +1,12 @@
 package com.castrocarazo.restaurante.controllers;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,15 +25,19 @@ import com.castrocarazo.restaurante.domain.Platillo;
 @RequestMapping("/api/menu")
 public class MenuController {
 
+	 private static Logger log = LoggerFactory.getLogger(MenuController.class);
+	
 	@Autowired
 	IMenuDao menu;
 
 	@GetMapping()
 	public ResponseEntity<List<Platillo>> getAll() {
+		log.info("MenuController [getAll()] -> Intentando consultar la lista de platillos" );
 		try {
 			List<Platillo> platillos = asignarImgABytes((List<Platillo>) menu.findAll());
 			return new ResponseEntity<>(platillos, HttpStatus.OK);
 		} catch (Exception ex) {
+			log.error("Error al consultar la lista de platillos. Exception" + ex.getMessage() );
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
@@ -68,9 +74,13 @@ public class MenuController {
 		}
 	}
 
-	private List<Platillo> asignarImgABytes(List<Platillo> lista) throws IOException {
-		for (Platillo platillo : lista) {
-			platillo.setImageInBytes(transformarImgABytes(platillo.getImage()));
+	private List<Platillo> asignarImgABytes(List<Platillo> lista) {
+		try {
+			for (Platillo platillo : lista) {
+				platillo.setImageInBytes(transformarImgABytes(platillo.getImage()));
+			}
+		} catch (Exception ignore) {
+			log.error("Error al convertir imagen a bytes. Exception" + ignore.toString());
 		}
 		return lista;
 	}
