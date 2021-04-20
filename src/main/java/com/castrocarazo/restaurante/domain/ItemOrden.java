@@ -9,29 +9,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-//@Table(name = "articulos_orden_comida")
 @Table(name = "orden_items")
-public class Items implements Serializable {
+public class ItemOrden implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private int cantidad;
-	private double precio;
 	
-	/*@OneToOne
-	@JoinColumn(name = "platillo_id")*/
-	@ManyToOne(fetch= FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="platillo_id")
 	private Platillo platillo;
-	
-	private Long orden;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -45,11 +38,9 @@ public class Items implements Serializable {
 		this.cantidad = cantidad;
 	}
 	public double getPrecio() {
-		return precio;
+		return cantidad * platillo.getPrecio();
 	}
-	public void setPrecio(double precio) {
-		this.precio = precio;
-	}
+	
 	public Platillo getPlatillo() {
 		return platillo;
 	}

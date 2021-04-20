@@ -3,7 +3,6 @@ package com.castrocarazo.restaurante.controllers;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.castrocarazo.restaurante.dao.IOrdenDao;
 import com.castrocarazo.restaurante.domain.EstadoPlatillo;
 import com.castrocarazo.restaurante.domain.OrdenDeComida;
-
+import com.castrocarazo.restaurante.service.OrdenesDaoService;
 
 @RestController
 @RequestMapping("/api/ordenes")
 public class OrdenesController {
 
 	@Autowired
-	IOrdenDao ordenesService;
+	OrdenesDaoService ordenesService;
 
 	@GetMapping()
 	public ResponseEntity<List<OrdenDeComida>> getAll() {
@@ -38,11 +37,11 @@ public class OrdenesController {
 		}
 	}
 
-	@Transactional
+	
 	@GetMapping("/ver")
-	public ResponseEntity<Optional<OrdenDeComida>> get(@RequestParam Long id) {
+	public ResponseEntity<OrdenDeComida> get(@RequestParam Long id) {
 		try {
-			Optional<OrdenDeComida> orden = ordenesService.findById(id);
+			OrdenDeComida orden = ordenesService.findById(id);
 			if (orden != null) {
 				return new ResponseEntity<>(orden, HttpStatus.FOUND);
 			} else
@@ -57,8 +56,6 @@ public class OrdenesController {
 	@PostMapping("/salvar")
 	public ResponseEntity<OrdenDeComida> salvar(@RequestBody OrdenDeComida orden) {
 		try {
-			if(orden.getId() == null)
-				orden.setEstadoPlatillo(new EstadoPlatillo(Long.valueOf(3), "solicitada","Solicitada la orden por el cliente."));
 			OrdenDeComida response = ordenesService.save(orden);
 			if (response != null) {
 				return new ResponseEntity<>(response, HttpStatus.CREATED);

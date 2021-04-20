@@ -1,6 +1,5 @@
 package com.castrocarazo.restaurante.controllers;
 
-
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -16,37 +15,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.castrocarazo.restaurante.domain.Platillo;
-import com.castrocarazo.restaurante.service.MenuDaoService;
+import com.castrocarazo.restaurante.domain.TipoPlato;
+import com.castrocarazo.restaurante.service.TipoPlatoDaoService;
 
 @RestController
-@RequestMapping("/api/menu")
-public class MenuController {
-
-	private static Logger log = LoggerFactory.getLogger(MenuController.class);
+@RequestMapping("/api/tipo-plato")
+public class TipoPlatoController {
+	
+	private static Logger log = LoggerFactory.getLogger(TipoPlatoController.class);
 
 	@Autowired
-	MenuDaoService menu;
+	TipoPlatoDaoService platos;
 
 	@GetMapping()
-	public ResponseEntity<List<Platillo>> getAll() {
-		log.info("MenuController [getAll()] -> Intentando consultar la lista de platillos");
+	public ResponseEntity<List<TipoPlato>> getAll() {
+		log.info("EstadosController [getAll()] -> Intentando consultar la lista de estados");
 		try {
-			List<Platillo> platillos = menu.findAll();
-			if(platillos != null)
-				return new ResponseEntity<>(platillos, HttpStatus.OK);
-			else 
+			List<TipoPlato> response = platos.findAll();
+			if (response != null)
+				return new ResponseEntity<>(response, HttpStatus.OK);
+			else
 				return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 		} catch (Exception ex) {
-			log.error("Error al consultar la lista de platillos. Exception" + ex.getMessage());
+			log.error("Error al consultar la lista de estados. Exception" + ex.getMessage());
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
 	@PostMapping(consumes = "application/json")
-	public ResponseEntity<Platillo> guardar(@RequestBody Platillo platillo) {
+	public ResponseEntity<TipoPlato> guardar(@RequestBody TipoPlato tipoPlatillo) {
 		try {
-			Platillo respuesta = menu.save(platillo);
+			TipoPlato respuesta = platos.save(tipoPlatillo);
 			return new ResponseEntity<>(respuesta, HttpStatus.OK);
 		} catch (Exception ex) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -54,9 +53,9 @@ public class MenuController {
 	}
 
 	@PutMapping(consumes = "application/json")
-	public ResponseEntity<Platillo> editar(@RequestBody Platillo platillo) {
+	public ResponseEntity<TipoPlato> editar(@RequestBody TipoPlato tipoPlatillo) {
 		try {
-			Platillo respuesta = menu.save(platillo);
+			TipoPlato respuesta = platos.save(tipoPlatillo);
 			return new ResponseEntity<>(respuesta, HttpStatus.OK);
 		} catch (Exception ex) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -64,16 +63,16 @@ public class MenuController {
 	}
 
 	@GetMapping("/ver")
-	public ResponseEntity<Platillo> obtenerPorId(@RequestParam Long id) {
+	public ResponseEntity<TipoPlato> obtenerPorId(@RequestParam Long id) {
 		try {
-			Platillo platillo = menu.findById(id);
-			if(platillo != null) 
-				return new ResponseEntity<>(platillo, HttpStatus.OK);
+			TipoPlato tipoPlatillo = platos.findById(id);
+			if (tipoPlatillo != null)
+				return new ResponseEntity<>(tipoPlatillo, HttpStatus.OK);
 			else
 				return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 		} catch (Exception ex) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 }
