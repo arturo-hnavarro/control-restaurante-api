@@ -37,11 +37,13 @@ public class Platillo implements Serializable {
 	@Column(name = "create_at")
 	private Date createAt;
 
-
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name="platillos_ingredientes", joinColumns =  @JoinColumn(name="platillo_id"),//foreing keys para las tablas 
-	inverseJoinColumns = @JoinColumn(name="ingrediente_id"),//foreing keys para las tablas
-	uniqueConstraints = {@UniqueConstraint(columnNames = {"platillo_id", "ingrediente_id"})})// configurar para no repetir 
+	@JoinTable(name = "platillos_ingredientes", joinColumns = @JoinColumn(name = "platillo_id"), // foreing keys para
+																									// las tablas
+			inverseJoinColumns = @JoinColumn(name = "ingrediente_id"), // foreing keys para las tablas
+			uniqueConstraints = { @UniqueConstraint(columnNames = { "platillo_id", "ingrediente_id" }) }) // configurar
+																											// para no
+																											// repetir
 	private List<CatalogoIngredientes> ingredientes;
 
 	@OneToOne
@@ -51,9 +53,9 @@ public class Platillo implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "tipo_id")
 	private TipoPlato tipoPlato;
-	
+
 	private String image;
-	
+
 	@Transient
 	private byte[] imageInBytes;
 
@@ -82,6 +84,8 @@ public class Platillo implements Serializable {
 	}
 
 	public Double getPrecio() {
+		if (this.precio == null)
+			return 0.0;
 		return precio;
 	}
 
@@ -108,7 +112,7 @@ public class Platillo implements Serializable {
 	public EstadoPlatillo getEstadoPlatillo() {
 		return estadoPlatillo;
 	}
-	
+
 	public void setEstadoPlatillo(EstadoPlatillo estadoPlatillo) {
 		this.estadoPlatillo = estadoPlatillo;
 	}
@@ -120,7 +124,7 @@ public class Platillo implements Serializable {
 	public void setTipoPlato(TipoPlato tipoPlato) {
 		this.tipoPlato = tipoPlato;
 	}
-	
+
 	public String getImage() {
 		return image;
 	}
@@ -128,7 +132,7 @@ public class Platillo implements Serializable {
 	public void setImgage(String image) {
 		this.image = image;
 	}
-	
+
 	private static final long serialVersionUID = 7138317283952280030L;
 
 }

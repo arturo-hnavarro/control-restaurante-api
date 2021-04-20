@@ -39,9 +39,9 @@ public class OrdenesDaoService {
 			orden.setEstadoPlatillo(
 					new EstadoPlatillo(Long.valueOf(3), "solicitada", "Solicitada la orden por el cliente."));
 
-		for (ItemOrden item : orden.getItems()) {
+		/*for (ItemOrden item : orden.getItems()) {
 			actualizarCantidadEnInventario(item.getPlatillo().getIngredientes());// Actualizo el disponible en el inventario(catalogo)
-		}
+		}*/
 
 		response = ordenesService.save(orden);
 		
