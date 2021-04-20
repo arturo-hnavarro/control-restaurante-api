@@ -35,9 +35,14 @@ INSERT INTO `catalogo_ingredientes` (nombre, cantidad_disponible) VALUES ('Cebol
 INSERT INTO `tipo_platos` (nombre, descripcion) VALUES ('Libre de gluten','Deliciosos platillos libres de gluten.');
 INSERT INTO `tipo_platos` (nombre, descripcion) VALUES ('Pizzas','Deliciosos pizzas con los sabores más frescos.');
 
-INSERT INTO `estados_platillos` (nombre, descripcion) VALUES ('habilitado','Disponible para venta.');
-INSERT INTO `estados_platillos` (nombre, descripcion) VALUES ('deshabilitado','Temporalmente fuera de venta.');
-INSERT INTO `estados_platillos` (nombre, descripcion) VALUES ('solicitada','Solicitada la orden por el cliente.');
+INSERT INTO `estados_platillos` (nombre, descripcion) VALUES ('habilitado','Disponible para venta');
+INSERT INTO `estados_platillos` (nombre, descripcion) VALUES ('deshabilitado','Temporalmente fuera de venta');
+
+INSERT INTO `estados_ordenes` (nombre, descripcion) VALUES ('warning','Solicitada la orden por el cliente');
+INSERT INTO `estados_ordenes` (nombre, descripcion) VALUES ('primary','Lista para entregar');
+INSERT INTO `estados_ordenes` (nombre, descripcion) VALUES ('success','Entregada al cliente');
+INSERT INTO `estados_ordenes` (nombre, descripcion) VALUES ('info','Completada, facturada');
+
 
 /* catalogo de platillos */
 INSERT INTO `platillos` (nombre, precio, create_at, estado_id, tipo_id, image) VALUES ('Farinata genovesa o fainá', 2500.00,  CURRENT_DATE(), 1,1, 'C:\RestauranteImagenes\farinata.jpg'); --1

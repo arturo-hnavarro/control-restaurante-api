@@ -24,9 +24,7 @@ import javax.persistence.TemporalType;
 @Table(name = "ordenes")
 public class OrdenDeComida implements Serializable {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -4351419302771449310L;
 
 	@Id
@@ -48,7 +46,7 @@ public class OrdenDeComida implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name = "estado_id")
-	private EstadoPlatillo estadoPlatillo;
+	private EstadoOrden estadoOrden;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="orden_id") //creo la llave forania a la tabla orden_items
@@ -95,15 +93,15 @@ public class OrdenDeComida implements Serializable {
 	public void setCliente(String cliente) {
 		this.cliente = cliente;
 	}
-
-	public EstadoPlatillo getEstadoPlatillo() {
-		return estadoPlatillo;
-	}
-
-	public void setEstadoPlatillo(EstadoPlatillo estadoPlatillo) {
-		this.estadoPlatillo = estadoPlatillo;
-	}
 	
+	public EstadoOrden getEstadoOrden() {
+		return estadoOrden;
+	}
+
+	public void setEstadoOrden(EstadoOrden estadoOrden) {
+		this.estadoOrden = estadoOrden;
+	}
+
 	public List<ItemOrden> getItems() {
 		return items;
 	}

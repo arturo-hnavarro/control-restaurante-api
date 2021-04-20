@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.castrocarazo.restaurante.dao.ICatalogoIngredientesDao;
 import com.castrocarazo.restaurante.dao.IOrdenDao;
 import com.castrocarazo.restaurante.domain.CatalogoIngredientes;
-import com.castrocarazo.restaurante.domain.EstadoPlatillo;
+import com.castrocarazo.restaurante.domain.EstadoOrden;
 import com.castrocarazo.restaurante.domain.ItemOrden;
 import com.castrocarazo.restaurante.domain.OrdenDeComida;
 import com.castrocarazo.restaurante.domain.Platillo;
@@ -23,7 +23,7 @@ public class OrdenesDaoService {
 	@Autowired
 	MenuDaoService productos;
 	@Autowired
-	EstadosDaoService estados;
+	EstadoOrdenDaoService estados;
 	
 	public List<OrdenDeComida> findAll() {
 		return (List<OrdenDeComida>) ordenesService.findAll();
@@ -41,8 +41,8 @@ public class OrdenesDaoService {
 	public OrdenDeComida save(OrdenDeComida orden) {
 		OrdenDeComida response = null;
 		if (orden.getId() == null)
-			orden.setEstadoPlatillo(
-					new EstadoPlatillo(Long.valueOf(3), "solicitada", "Solicitada la orden por el cliente."));
+			orden.setEstadoOrden(
+					new EstadoOrden(Long.valueOf(1), "solicitada", "Solicitada la orden por el cliente."));
 		response = ordenesService.save(orden);
 		actualizarInventario(orden.getItems());
 		return response;
@@ -55,7 +55,7 @@ public class OrdenesDaoService {
 	public OrdenDeComida editarEstadoPorId(Long id, Long estadoId) {
 		OrdenDeComida orden = ordenesService.findById(id).orElse(null);
 		if(orden != null) {
-			orden.setEstadoPlatillo(estados.findById(estadoId));;
+			orden.setEstadoOrden(estados.findById(estadoId));;
 			ordenesService.save(orden);
 		}
 		return orden;

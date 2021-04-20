@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "estados_platillos")
-public class EstadoPlatillo implements Serializable {
+@Table(name = "estados_ordenes")
+public class EstadoOrden implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +22,10 @@ public class EstadoPlatillo implements Serializable {
 
 	private String descripcion;
 		
-	public EstadoPlatillo() {
+	public EstadoOrden() {
 	}
 
-	public EstadoPlatillo(Long id, String nombre, String descripcion) {
+	public EstadoOrden(Long id, String nombre, String descripcion) {
 		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -54,7 +54,7 @@ public class EstadoPlatillo implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
 	
-	private static final long serialVersionUID = 2169581550878752885L;
+	private static final long serialVersionUID = -1335610867553402631L;
 }
+
