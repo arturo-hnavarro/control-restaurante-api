@@ -34,7 +34,12 @@ public class MenuDaoService {
 			platillo.setImageInBytes(transformarImgABytes(platillo.getImage()));
 		return platillo;
 	}
-
+	
+	public void deleteById(Long id) {
+		menu.deleteById(id);
+	}
+	
+	
 	private List<Platillo> asignarImgABytes(List<Platillo> lista) {
 		try {
 			for (Platillo platillo : lista) {

@@ -9,12 +9,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.castrocarazo.restaurante.domain.OrdenDeComida;
+import com.castrocarazo.restaurante.domain.Platillo;
 import com.castrocarazo.restaurante.service.OrdenesDaoService;
 
 @RestController
@@ -68,6 +70,19 @@ public class OrdenesController {
 		try {
 			ordenesService.deleteById(id);
 			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+		} catch (Exception ex) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@PutMapping("editar_por_id")
+	public ResponseEntity<OrdenDeComida> editarPorId(@RequestParam Long id, @RequestParam Long estadoId) {
+		try {
+			OrdenDeComida respuesta = ordenesService.editarEstadoPorId(id, estadoId);
+			if(respuesta!= null)
+				return new ResponseEntity<>(respuesta, HttpStatus.OK);
+			else
+				return new ResponseEntity<>(respuesta, HttpStatus.NO_CONTENT);
 		} catch (Exception ex) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}

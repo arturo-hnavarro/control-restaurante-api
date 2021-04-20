@@ -22,7 +22,9 @@ public class OrdenesDaoService {
 	ICatalogoIngredientesDao inventario;
 	@Autowired
 	MenuDaoService productos;
-
+	@Autowired
+	EstadosDaoService estados;
+	
 	public List<OrdenDeComida> findAll() {
 		return (List<OrdenDeComida>) ordenesService.findAll();
 	}
@@ -31,8 +33,10 @@ public class OrdenesDaoService {
 		return ordenesService.findById(id).orElse(null);
 	}
 
-	/*
+	/**
 	 * Metodo encargado de almacenar una orden en BD y disminuir la cantidad disponible en el inventario
+	 * @param orden
+	 * @return orden creada
 	 */
 	public OrdenDeComida save(OrdenDeComida orden) {
 		OrdenDeComida response = null;
@@ -48,6 +52,14 @@ public class OrdenesDaoService {
 		ordenesService.deleteById(id);
 	}
 
+	public OrdenDeComida editarEstadoPorId(Long id, Long estadoId) {
+		OrdenDeComida orden = ordenesService.findById(id).orElse(null);
+		if(orden != null) {
+			orden.setEstadoPlatillo(estados.findById(estadoId));;
+			ordenesService.save(orden);
+		}
+		return orden;
+	}
 	
 	/**
 	 * Actualiza el disponible en el inventario de CatalogoIngredientes

@@ -40,11 +40,11 @@ INSERT INTO `estados_platillos` (nombre, descripcion) VALUES ('deshabilitado','T
 INSERT INTO `estados_platillos` (nombre, descripcion) VALUES ('solicitada','Solicitada la orden por el cliente.');
 
 /* catalogo de platillos */
-INSERT INTO `platillos` (nombre, precio, create_at, estado_id, tipo_id, image) VALUES ('Farinata genovesa o fainá', 2500.00,  CURRENT_DATE(), 1,1, 'D:\Documentos/GitHub/control-restaurante-api/src/main/resources/images/farinata.jpg'); --1
-INSERT INTO `platillos` (nombre, precio, create_at, estado_id, tipo_id, image) VALUES ('SUPREMA (GRANDE)', 11950.00,  CURRENT_DATE(), 1,2, 'D:/Documentos/GitHub/control-restaurante-api/src/main/resources/images/pizza-chorizo-y-verduras.jpg');--2
-INSERT INTO `platillos` (nombre, precio, create_at, estado_id, tipo_id, image) VALUES ('SUPREMA (MEDIANA)', 9950.00,  CURRENT_DATE(), 1,2, 'D:/Documentos/GitHub/control-restaurante-api/src/main/resources/images/pizza-chorizo-y-verduras.jpg');--3
-INSERT INTO `platillos` (nombre, precio, create_at, estado_id, tipo_id, image) VALUES ('JAMÓN Y QUESO (GRANDE)', 11950.00,  CURRENT_DATE(), 1,2, 'D:/Documentos/GitHub/control-restaurante-api/src/main/resources/images/pizza-jamon-y-queso.jpg');--4
-INSERT INTO `platillos` (nombre, precio, create_at, estado_id, tipo_id, image) VALUES ('JAMÓN Y QUESO (MEDIANA)', 9950.00,  CURRENT_DATE(), 1,2, 'D:/Documentos/GitHub/control-restaurante-api/src/main/resources/images/pizza-jamon-y-queso.jpg');--5
+INSERT INTO `platillos` (nombre, precio, create_at, estado_id, tipo_id, image) VALUES ('Farinata genovesa o fainá', 2500.00,  CURRENT_DATE(), 1,1, 'C:\RestauranteImagenes\farinata.jpg'); --1
+INSERT INTO `platillos` (nombre, precio, create_at, estado_id, tipo_id, image) VALUES ('SUPREMA (GRANDE)', 11950.00,  CURRENT_DATE(), 1,2, 'C:\RestauranteImagenes\pizza_jamon_y_queso.jpg');--2
+INSERT INTO `platillos` (nombre, precio, create_at, estado_id, tipo_id, image) VALUES ('SUPREMA (MEDIANA)', 9950.00,  CURRENT_DATE(), 1,2, 'C:\RestauranteImagenes\pizza_jamon_y_queso.jpg');--3
+INSERT INTO `platillos` (nombre, precio, create_at, estado_id, tipo_id, image) VALUES ('JAMÓN Y QUESO (GRANDE)', 11950.00,  CURRENT_DATE(), 1,2, 'C:\RestauranteImagenes\pizza_jamon_y_queso.jpg');--4
+INSERT INTO `platillos` (nombre, precio, create_at, estado_id, tipo_id, image) VALUES ('JAMÓN Y QUESO (MEDIANA)', 9950.00,  CURRENT_DATE(), 1,2, 'C:\RestauranteImagenes\pizza_jamon_y_queso.jpg');--5
 
 INSERT INTO `platillos_ingredientes` (platillo_id, ingrediente_id) VALUES (1,2);
 
