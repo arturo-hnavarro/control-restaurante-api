@@ -17,7 +17,7 @@ public class TipoPlato implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(unique = true, length = 50)
+	@Column(unique = true, length = 50, nullable = true)
 	private String nombre;
 	private String descripcion;
 
