@@ -15,7 +15,7 @@ INSERT INTO usuarios_roles  (usuario_id, role_id) VALUES (1,1);
 INSERT INTO usuarios_roles  (usuario_id, role_id) VALUES (2,2);
 INSERT INTO usuarios_roles  (usuario_id, role_id) VALUES (3,3);
 INSERT INTO usuarios_roles  (usuario_id, role_id) VALUES (4,4);
-INSERT INTO usuarios_roles  (usuario_id, role_id) VALUES (1,5);
+INSERT INTO usuarios_roles  (usuario_id, role_id) VALUES (5,5);
 
 INSERT INTO  catalogo_ingredientes  (nombre, cantidad_disponible) VALUES ('Harina de garbanzo', 200); --1
 INSERT INTO  catalogo_ingredientes  (nombre, cantidad_disponible) VALUES ('Agua', 2000); --2
