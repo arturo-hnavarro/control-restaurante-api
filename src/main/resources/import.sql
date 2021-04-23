@@ -1,18 +1,22 @@
-INSERT INTO `usuarios` (username, password, enabled, nombre, apellido, email) VALUES ('arturo', '123456', 1, 'Arturo', 'Hernandez Navarro', 'hernandezn.arturo@gmail.com');
-INSERT INTO `usuarios` (username, password, enabled, nombre, apellido, email) VALUES ('turo', '123456', 1, 'José', 'Hernandez Navarro', 'turo.arturo@gmail.com');
-INSERT INTO `usuarios` (username, password, enabled, nombre, apellido, email) VALUES ('keneth', 'abcd', 1, 'Keneth', 'Blandon Ramirez', 'kblandon_91@hotmail.com');
-INSERT INTO `usuarios` (username, password, enabled, nombre, apellido, email) VALUES ('sotico', 'sotico', 1, 'Alejando', 'Sotico', 'sotico@hotmail.com');
+INSERT INTO `usuarios` (username, password, enabled, nombre, apellido, email) VALUES ('admin', 'admin01', 1, 'Arturo', 'Iniesta', 'iniesta@gmail.com');
+INSERT INTO `usuarios` (username, password, enabled, nombre, apellido, email) VALUES ('user', 'user01', 1, 'José', 'Figueres', 'figueres@pac.com');
+INSERT INTO `usuarios` (username, password, enabled, nombre, apellido, email) VALUES ('cocinero', 'cocinero01', 1, 'Keneth', 'Soto', 'ksot01o@hotmail.com');
+INSERT INTO `usuarios` (username, password, enabled, nombre, apellido, email) VALUES ('cajero', 'cajero01', 1, 'Michael', 'Romero', 'aromero@hotmail.com');
+INSERT INTO `usuarios` (username, password, enabled, nombre, apellido, email) VALUES ('mesero', 'mesero01', 1, 'Lisa', 'Simpson', 'lsimpsion@yahoo.com');
 
 
 INSERT INTO `roles` (nombre) VALUES ('ROLE_USER');
 INSERT INTO `roles` (nombre) VALUES ('ROLE_ADMIN');
 INSERT INTO `roles` (nombre) VALUES ('ROLE_COCINERO');
 INSERT INTO `roles` (nombre) VALUES ('ROLE_CAJERO');
+INSERT INTO `roles` (nombre) VALUES ('ROLE_MESERO');
+
 
 INSERT INTO `usuarios_roles` (usuario_id, role_id) VALUES (1,1);
 INSERT INTO `usuarios_roles` (usuario_id, role_id) VALUES (2,2);
 INSERT INTO `usuarios_roles` (usuario_id, role_id) VALUES (3,3);
 INSERT INTO `usuarios_roles` (usuario_id, role_id) VALUES (4,4);
+INSERT INTO `usuarios_roles` (usuario_id, role_id) VALUES (5,5);
 
 INSERT INTO `catalogo_ingredientes` (nombre, cantidad_disponible) VALUES ('Harina de garbanzo', 200); --1
 INSERT INTO `catalogo_ingredientes` (nombre, cantidad_disponible) VALUES ('Agua', 2000); --2
@@ -77,4 +81,8 @@ INSERT INTO `platillos_ingredientes` (platillo_id, ingrediente_id) VALUES (5,8);
 INSERT INTO `mesas` (detalle) VALUES ('Detalle de la mesa 1');
 INSERT INTO `mesas` (detalle) VALUES ('Detalle de la mesa 2 en la Terraza');
 INSERT INTO `mesas` (detalle) VALUES ('Detalle de la mesa 3 para dos personas');
-INSERT INTO `mesas` (detalle) VALUES ('Detalle de la mesa 4 barra');
+INSERT INTO `mesas` (detalle) VALUES ('Detalle de la mesa 4');
+INSERT INTO `mesas` (detalle) VALUES ('Detalle de la mesa 5');
+INSERT INTO `mesas` (detalle) VALUES ('Detalle de la mesa 6');
+INSERT INTO `mesas` (detalle) VALUES ('Detalle de la mesa 7');
+INSERT INTO `mesas` (detalle) VALUES ('Detalle de la mesa 8');
